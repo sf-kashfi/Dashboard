@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 type SignUpFormData = {
     name: string;
@@ -46,18 +47,38 @@ const Error = styled.p`
   font-size: 12px;
 `;
 
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 12px;
+`;
+
 const Button = styled.button`
-  width: 100%;
+  flex: 1;
   padding: 12px;
-  background: #0066cc;
-  color: white;
-  font-weight: 600;
-  border: none;
   border-radius: 8px;
+  border: none;
   cursor: pointer;
+  font-weight: 600;
+  color: white;
+  background: #28a745;
 
   &:hover {
-    background: #0052a3;
+    background: #218838;
+  }
+`;
+
+const LinkButton = styled(Link)`
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  background: #f0f0f0;
+  color: #333;
+
+  &:hover {
+    background: #e0e0e0;
   }
 `;
 
@@ -124,7 +145,10 @@ const Register = () => {
                 />
                 {errors.confirmPassword && <Error>{errors.confirmPassword.message}</Error>}
 
-                <Button type="submit">Create Account</Button>
+                <ButtonGroup>
+                    <LinkButton to="/auth/login">Sign In</LinkButton>
+                    <Button type="submit">Create Account</Button>
+                </ButtonGroup>
             </form>
         </Container>
     );

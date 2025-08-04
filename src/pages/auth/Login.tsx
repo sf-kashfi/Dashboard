@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from '@emotion/styled';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 type FormData = {
     username: string;
@@ -36,20 +37,41 @@ const Input = styled.input`
   }
 `;
 
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 12px;
+`;
+
 const Button = styled.button`
-  width: 100%;
+  flex: 1;
   padding: 12px;
-  background: #0077ff;
-  color: white;
-  font-weight: bold;
-  border: none;
   border-radius: 8px;
+  border: none;
   cursor: pointer;
+  font-weight: 600;
+  color: white;
+  background: #0077cc;
 
   &:hover {
-    background: #005fcc;
+    background: #005fa3;
   }
 `;
+
+const LinkButton = styled(Link)`
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  background: #f0f0f0;
+  color: #333;
+
+  &:hover {
+    background: #e0e0e0;
+  }
+`;
+
 
 const SignInForm = () => {
     const { register, handleSubmit } = useForm<FormData>();
@@ -78,8 +100,12 @@ const SignInForm = () => {
                         {...register('password', { required: true })}
                     />
                 </div>
-                <Button type="submit">Sign In</Button>
+                <ButtonGroup>
+                    <LinkButton to="/auth/register">Sign Up</LinkButton>
+                    <Button type="submit">Sign In</Button>
+                </ButtonGroup>
             </form>
+
         </Container>
     );
 };
